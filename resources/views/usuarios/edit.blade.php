@@ -8,7 +8,7 @@
     </div>
 </div>
 <form method="post" action="{{ route('profile.saveEdit') }}">
-    <div class="row p-4" style="box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.34);">
+    <div class="row">
         @csrf
 
             <div class='col'>

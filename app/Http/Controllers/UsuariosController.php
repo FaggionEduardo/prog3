@@ -98,4 +98,29 @@ class UsuariosController extends Controller
             return view('usuarios.edit', ['pagina' => 'usuarios']);
         }
     }
+
+    public function password(Request $form)
+    {
+        if ($form->isMethod('POST'))
+        {
+            $usuario = Auth::user();
+
+            if (!Hash::check($form->oldPassword, Auth::user()->password))
+            {
+                return view('usuarios.password', ['pagina' => 'password', 'erro' => "Senha antiga incorreta"]);
+            }
+
+            if ($form->newPassword != $form->newPasswordConfirm)
+            {
+                return view('usuarios.password', ['pagina' => 'password', 'erro' => "As senhas digitadas não conferem"]);
+            }
+
+            $usuario->password = Hash::make($form->newPassword);         
+            $usuario->save();
+
+            return view('usuarios.show', ['pagina' => 'usuarios']);
+        } else {
+            return view('usuarios.password', ['pagina' => 'usuarios', 'erro' => null]);
+        }
+    }
 }

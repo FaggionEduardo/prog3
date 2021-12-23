@@ -49,6 +49,7 @@ Route::get('/profile', [UsuariosController::class, 'show'])->middleware(['verifi
 Route::get('/profile/edit', [UsuariosController::class, 'edit'])->middleware(['verified'])->name('profile.edit');
 Route::post('/profile/edit', [UsuariosController::class, 'edit'])->name('profile.saveEdit');;
 Route::get('/profile/password', [UsuariosController::class, 'password'])->middleware(['verified'])->name('profile.password');
+Route::post('/profile/password', [UsuariosController::class, 'password'])->middleware(['verified'])->name('profile.savePassword');
 
 Route::get('/login', [UsuariosController::class, 'login'])->name('login');
 Route::post('/login', [UsuariosController::class, 'login']);
