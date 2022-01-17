@@ -3,6 +3,7 @@
 use App\Http\Controllers\RecadosController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\AutomoveisController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 /*
@@ -85,3 +86,20 @@ Route::get('/email/verify/{id}/{hash}', function
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/email/verification-notification', [RecadosController::class, 'index'])->name('email.verify');
+
+//declaração de rotas de automoveis
+Route::get('automoveis', [AutomoveisController::class, 'index'])->middleware(['verified'])->name('automoveis');
+
+Route::get('/automoveis/inserir', [AutomoveisController::class, 'create'])->name('automoveis.inserir');
+
+Route::post('/automoveis/inserir', [AutomoveisController::class, 'insert'])->name('automoveis.gravar');
+
+Route::get('/automoveis/{auto}', [AutomoveisController::class, 'show'])->name('automoveis.show');
+
+Route::get('/automoveis/{auto}/editar', [AutomoveisController::class, 'edit'])->name('automoveis.edit');
+
+Route::put('/automoveis/{auto}/editar', [AutomoveisController::class, 'update'])->name('automoveis.update');
+
+Route::get('/automoveis/{auto}/apagar', [AutomoveisController::class, 'remove'])->name('automoveis.remove');
+
+Route::delete('/automoveis/{auto}/apagar', [AutomoveisController::class, 'delete'])->name('automoveis.delete');

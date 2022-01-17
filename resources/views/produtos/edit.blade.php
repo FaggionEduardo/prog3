@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-4">
 
-        <form method="post" action="{{ route('produtos.update', $prod) }}">
+        <form method="post" action="{{ route('produtos.update', $prod) }}" enctype="multipart/form-data">
             @csrf
             @method('put')
             <div class="mb-3">
@@ -22,6 +22,10 @@
             <div class="mb-3">
                 <label for="descricao" class="form-label">Descrição</label>
                 <textarea class="form-control" id="descricao" name="descricao" rows="3">{{$prod->descricao}}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <p>Foto: <input type="file" name="imagem"></p>
             </div>
 
             <div class="mb-3">

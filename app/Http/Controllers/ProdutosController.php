@@ -46,7 +46,7 @@ class ProdutosController extends Controller
 
     public function update(Request $form, Produto $prod)
     {
-        $imagemCaminho = $form->file('imagem')->store('', 'imagens');
+        $imagemCaminho = $form->file('imagem') ? $form->file('imagem')->store('', 'imagens') : $prod->imagem;
         $prod->nome = $form->nome;
         $prod->preco = $form->preco;
         $prod->descricao = $form->descricao;
